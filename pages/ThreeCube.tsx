@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
+import { Points, PointMaterial } from '@react-three/drei'
 import { Mesh } from 'three'
 
 function inSphere(buffer: any, sphereRadius: number) {
@@ -34,26 +35,25 @@ function inSphere(buffer: any, sphereRadius: number) {
 }
 
 const Stars = () => {
-  const myMesh = useRef<Mesh>(null!)
+  const myMesh = useRef<typeof Points>(null!)
   const [sphere] = useState(() => inSphere(new Float32Array(5000), 1.5))
   useFrame(({clock}, delta) => {
     myMesh.current.rotation.x -= delta / 10
     myMesh.current.rotation.y -= delta / 15
   })
   return(  
-    <mesh ref={myMesh}>
-      <boxGeometry args={[2, 2, 2]}/>
-      <meshStandardMaterial />
-    </mesh>
+    <group rotation={[0, 0, Math.PI / 4]}>
+      <Points ref={myMesh} positions={sphere} stride={3} frustumCulled={false}>
+        <PointMaterial transparent color="#ffa0e0" size={0.005} sizeAttenuation={true} depthWrite={false} />
+      </Points>
+    </group>
   );
 }
 
 const ThreeCube = () => (
-    <Canvas>
-      <ambientLight intensity={0.1} />
-      <directionalLight color="red" position={[0, 0, 5]} />
-      <Stars />
-    </Canvas>
+  <Canvas camera={{ position: [0, 0, 1] }}>
+    <Stars />
+  </Canvas>
 );
 
 export { ThreeCube };
