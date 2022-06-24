@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Points, PointMaterial } from '@react-three/drei'
+import { Points as threePoints} from 'three'
 
 function inSphere(buffer: any, sphereRadius: number) {
   // var _defaultSphere$sphere2 = _objectSpread2(_objectSpread2({}, defaultSphere), sphere),
@@ -34,7 +35,7 @@ function inSphere(buffer: any, sphereRadius: number) {
 }
 
 const Stars = () => {
-  const myMesh = useRef<typeof Points>(null!)
+  const myMesh = useRef<threePoints>(null!)
   const [sphere] = useState(() => inSphere(new Float32Array(5000), 1.5))
   useFrame((_, delta) => {
     myMesh.current.rotation.x -= delta / 10
