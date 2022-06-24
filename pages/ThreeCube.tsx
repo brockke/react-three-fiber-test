@@ -36,7 +36,7 @@ function inSphere(buffer: any, sphereRadius: number) {
 const Stars = () => {
   const myMesh = useRef<typeof Points>(null!)
   const [sphere] = useState(() => inSphere(new Float32Array(5000), 1.5))
-  useFrame(({clock}, delta) => {
+  useFrame((_, delta) => {
     myMesh.current.rotation.x -= delta / 10
     myMesh.current.rotation.y -= delta / 15
   })
