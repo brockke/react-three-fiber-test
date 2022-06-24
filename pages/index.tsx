@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { ThreeCube } from '../components/ThreeCube'
+import { ThreeCube } from './ThreeCube'
 
 const Home: NextPage = () => {
   return (
