@@ -6,7 +6,7 @@ import { ThreeCube } from './ThreeCube'
 
 const Home: NextPage = () => {
   return (
-    <div className='h-screen'>
+    <div className='h-screen bg-indigo-800'>
       <ThreeCube />
     </div>
   )
