@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Points, PointMaterial } from '@react-three/drei'
+import { Points, PointMaterial, OrbitControls } from '@react-three/drei'
 import { Points as threePoints} from 'three'
 
 function inSphere(buffer: any, sphereRadius: number) {
@@ -53,6 +53,7 @@ const Stars = () => {
 const ThreeCube = () => (
   <Canvas camera={{ position: [0, 0, 1] }}>
     <Stars />
+    <OrbitControls enableZoom={false} enablePan={false}/>
   </Canvas>
 );
 
